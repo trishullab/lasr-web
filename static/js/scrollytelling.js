@@ -45,6 +45,15 @@ function init(selector) {
         updateableFigure.src = updateableFigurePath + "/" + (response.index + 1) + ".svg";
     }
 
+    // only call if on mobile.
+    // localizeSteps();
+    if (window.innerWidth < 768) {
+        // add is-underlay to all #updateableFigure elements
+        document.querySelectorAll(selector + " #updateableFigure").forEach(figure => {
+            figure.parentElement.classList.add('is-underlay');
+        }); 
+        localizeSteps();
+    }
 
     // 1. force a resize on load to ensure proper dimensions are sent to scrollama
     handleResize();
@@ -61,3 +70,31 @@ function init(selector) {
         })
         .onStepEnter(handleStepEnter);
 }
+
+function localizeSteps() {
+    // Select all elements with the class 'step'
+    const steps = document.querySelectorAll('.step');
+
+    steps.forEach(step => {
+        // Create a new div element with class 'has-background-white'
+        const backgroundDiv = document.createElement('div');
+        backgroundDiv.classList.add('has-background-white');
+
+        // Find the title element within the current step
+        const title = step.previousElementSibling;
+
+        // If a title exists, append it to the new background div
+        if (title) {
+            backgroundDiv.appendChild(title);
+        }
+
+        // Append the current step content to the new background div
+        backgroundDiv.appendChild(step.cloneNode(true));
+
+        // Replace the current step content with the new background div
+        step.innerHTML = '';
+        step.classList = [];
+        step.appendChild(backgroundDiv);
+    });
+}
+    
