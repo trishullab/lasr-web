@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="⚡️: Symbolic Regression with a Learned Concept Library">
+	<meta name="keywords" content="LaSR, Symbolic Regression, PySR, Scientific Discovery Neurosymbolic Learning, Program Synthesis">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LaSR</title>
+
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
+		gtag('config', 'G-PYVRSFMDRL');
+	</script>
+
+	<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+	<link rel="stylesheet" href="./static/css/bulma.min.css">
+	<link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+	<link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+	<link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	<link rel="stylesheet" href="./static/css/index.css">
+	<link rel="stylesheet" href="./static/css/scrollytelling.css">
+	<link rel="icon" href="https://fav.farm/⚡️">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script defer src="./static/js/fontawesome.all.min.js"></script>
+	<script src="./static/js/bulma-carousel.min.js"></script>
+	<script src="./static/js/bulma-slider.min.js"></script>
+	<script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container is-max-desktop">
+				<div class="columns is-centered">
+					<div class="column has-text-centered">
+						<h1 class="title is-1 publication-title"><span class="lasr">LaSR</span>: Symbolic Regression with a Learned Concept Library</h1>
+						<div class="is-size-5 publication-authors">
+							<span class="author-block">
+								<a href="https://www.linkedin.com/in/aryagrayeli">Arya Grayeli</a><sup>1,4,*</sup>,</span>
+							<span class="author-block">
+								<a href="https://atharvas.net">Atharva Sehgal</a><sup>1,*</sup>,</span>
+							<span class="author-block">
+								<a href="https://omarcostilla.mit.edu">Omar Costilla Reyes</a><sup>2</sup>,
+							</span>
+							<span class="author-block">
+								<a href="https://astroautomata.com">Miles Cranmer</a><sup>3</sup>,
+							</span>
+							<span class="author-block">
+								<a href="https://www.cs.utexas.edu/~swarat">Swarat Chaudhuri</a><sup>1</sup>,
+							</span>
+						</div>
+
+						<div class="is-size-5 publication-authors">
+							<span class="author-block"><sup>1</sup>UT Austin,</span>
+							<span class="author-block"><sup>2</sup>MIT CSAIL</span>
+							<span class="author-block"><sup>3</sup>University of Cambridge</span>
+							<span class="author-block"><sup>4</sup>Foundry Technologies</span>
+							<span class="author-block"><sup>*</sup>Equal Contribution</span>
+						</div>
+
+						<div class="column has-text-centered">
+							<div class="publication-links">
+								<!-- PDF Link. -->
+								<span class="link-block">
+									<a href="https://atharvas.net/static/lasr.pdf"
+										class="external-link button is-normal is-rounded is-dark">
+										<span class="icon">
+											<i class="fas fa-file-pdf"></i>
+										</span>
+										<span>PDF</span>
+									</a>
+								</span>
+								<!-- Video Link. -->
+								<!-- <span class="link-block">
+									<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+										class="external-link button is-normal is-rounded is-dark">
+										<span class="icon">
+											<i class="fab fa-youtube"></i>
+										</span>
+										<span>Video</span>
+									</a>
+								</span> -->
+								<!-- Code Link. -->
+								<span class="link-block">
+									<a href="https://github.com/MilesCranmer/PySR"
+										class="external-link button is-normal is-rounded is-dark">
+										<span class="icon">
+											<i class="fab fa-github"></i>
+										</span>
+										<span>Code (Coming Soon!)</span>
+									</a>
+								</span>
+								<!-- <span class="link-block">
+									<a href="static/presentation.pdf"
+										class="external-link button is-normal is-rounded is-dark">
+										<span class="icon">
+											<i class="fas fa-file-pdf"></i>
+										</span>
+										<span>Brief Slide Deck</span>
+									</a>
+								</span> -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="hero teaser">
+		<div class="container is-max-desktop">
+			<div class="hero-body">
+				<img src="./static/images/teaser.svg" style="max-width: 100%; height: auto;" loading="eager"
+				<h2 class="subtitle has-text-centered">
+					<span class="lasr">LaSR</span> leverages <em>concept guidance</em> to accelerate symbolic regression for scientific discovery.
+				</h2>
+
+			</div>
+		</div>
+	</section>
+
+
+	<section class="section">
+		<div class="container is-max-desktop">
+			<!-- Abstract. -->
+			<div class="columns is-centered has-text-centered">
+				<div class="column is-four-fifths">
+					<h2 class="title is-3">Abstract</h2>
+					<div class="content has-text-justified">
+						<p>
+							<span class="lasr">LaSR</span> is a novel method for
+							symbolic regression (SR), the task of searching for
+							compact programmatic hypotheses that best explain a dataset.
+							The problem is commonly solved using genetic algorithms;
+							we show that we can enhance such methods by inducing a
+							library of abstract textual concepts. 
+							</p>
+						<p>
+							LaSR (pronounced 'Laser') uses zero-shot queries to a large language model (LLM)
+							to discover and evolve concepts occurring in known
+							high-performing hypotheses. We discover new hypotheses
+							using a mix of standard evolutionary steps and
+							LLM-guided steps (obtained through zero-shot LLM queries)
+							conditioned on discovered concepts. Once discovered, hypotheses
+							are used in a new round of concept abstraction and evolution.
+						</p>
+						<p>
+							We validate LaSR on the Feynman equations, a popular
+							SR benchmark, as well as a set of synthetic tasks.
+							On these benchmarks, LaSR substantially outperforms
+							a variety of state-of-the-art SR approaches based on
+							deep learning and evolutionary algorithms.
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--/ Abstract. -->
+			<div class="container is-hidden-tablet is-max-desktop">
+				<!-- Abstract. -->
+				<h2 class="title has-text-centered is-3">⚠️Warning⚠️</h2>
+				<div class="content has-text-justified">
+					<p>
+						The next sections might not render correctly on mobile devices. Please view this page on a desktop or enable "desktop mode" for the best experience!
+					</p>
+				</div>
+			</div>
+			</div>
+	</section>
+
+
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">Scientific Discovery with Symbolic Regression</h2>
+			<!-- Method. -->
+			<div class="columns is-centered" id="types-of-compositions-scroll">
+				<div class="column is-max-mobile is-two-fifth-tablet is-one-quarter-desktop is-one-fifth-widescreen article">
+					<!-- <h2 class="title is-3">Types of Compositions</h2> -->
+					<!-- Method SubSection A. -->
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Discovery - Goal</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							One of the grand challenges in the artificial intelligence is to find an AI scientist: an artificial agent that can automatically design, test, and infer scientific hypotheses from
+data. The scientific discovery process can be broken down into six distinct steps. Let's begin by understanding these steps with a concrete example: Kepler's discovery of the laws of planetary motion. A more complete
+description of this example is found in "The Astronomical Revolution: Copernicus- Kepler-Borelli" by Alexandre Koyré.
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 1 Observation</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							The first step in the scientific discovery process is to observe a phenomenon that is unexplained by the leading scientific theories. In our example, the leading theory -- Aristotle's geocentric model -- failed to explain the retrograde motion of Mars as it moved across the night sky.
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 2 Theory</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Once an anomaly is observed, the next step is to propose a new theory that can explain the phenomenon. In our example, Copernicus hypothesized a heliocentric model of the solar system, where the planets revolve around the sun. The relative motion of the planets in this model can explain the retrograde motion of Mars.
+							TODO.
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 3 Data Collection</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							A theory is incomplete without empirical evidence to support it. In our example, Tycho Brahe meticulously collected data on the positions of the planets in the night sky. Notice that Brahe collected more readings when he believed, intuitively, that the retrograde motion of Mars was most pronounced. This is an important distinction in data collection for scientific discovery: there is always an 'importance bias' in the data collection process. 
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 4 Analysis</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Kepler, one of Brahe's students, cleaned and analyzed the data collected by Brahe. Kepler's analysis revealed that an ellipse was the best fit for the data. This enabled deducing relationships between the orbital duration and the orbital radius.
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 5 Interpretation</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Kepler's work in moving the empirical data into a set of mathematical relationships paved the way for broader interpretation. For instance, Newton deduced the law of planetary motion by building upon Kepler's empirical laws. In this way, the empirical law for one phenomena generalizes to and explains other phenomena that didn't have a-priori data collection mechanisms.
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Symbolic Regression</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							This paper focuses on just one subtask in the scientific discovery process: <strong>symbolic regression</strong>. Symbolic regression is the task of finding a mathematical expression that best fits a given dataset. The goal is to find a compact, interpretable expression that can be used to make predictions and infer new relationships. Symbolic regression is a key tool in scientific discovery, as it can help uncover hidden relationships in the data and suggest new hypotheses to test.
+							<br/>
+							Kepler's discovery of the empirical laws of planetary motion is considered one of the earliest examples of symbolic regression.
+						</p>
+							<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+				</div>
+				<!-- Image. -->
+				<!-- Make sure image fits in the container. -->
+					<div class="column content">
+					<img src="static/scientific-discovery-frames/1.svg" id="updateableFigure">
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- <section class="section">
+		<div class="container">
+			<h2 class="title is-2">The <span class="lasr">LaSR</span> Learning Loop</h2>
+		<div class="columns is-centered" id="types-of-compositions-scroll">
+			<div class="column is-max-mobile is-two-fifth-tablet is-one-quarter-desktop is-one-fifth-widescreen article">
+				<!-- <h2 class="title is-3">Types of Compositions</h2> -->
+				<!-- Method SubSection A. -->
+				<h3 class="title is-size-6-mobile is-size-4-tablet">LLM based Initialization / Mutation / Crossover</h3>
+				<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+					<p>
+						TODO.
+					</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+						frames. Use the slider here to linearly interpolate between the left frame and the right
+						frame.
+					</p> -->
+				</div>
+				<h3 class="title is-size-6-mobile is-size-4-tablet">Prompt Evolution</h3>
+				<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+					<p>
+						TODO.
+					</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+						frames. Use the slider here to linearly interpolate between the left frame and the right
+						frame.
+					</p> -->
+				</div>
+				<h3 class="title is-size-6-mobile is-size-4-tablet">Stage 1: Hypotheses evolution</h3>
+				<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+					<p>
+						TODO.
+					</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+						frames. Use the slider here to linearly interpolate between the left frame and the right
+						frame.
+					</p> -->
+				</div>
+				<h3 class="title is-size-6-mobile is-size-4-tablet">Stage 2: Concept abstraction</h3>
+				<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+					<p>
+						TODO.
+					</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+						frames. Use the slider here to linearly interpolate between the left frame and the right
+						frame.
+					</p> -->
+				</div>
+				<h3 class="title is-size-6-mobile is-size-4-tablet">Stage 3: Concept evolution</h3>
+				<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+					<p>
+						TODO.
+					</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+						frames. Use the slider here to linearly interpolate between the left frame and the right
+						frame.
+					</p> -->
+				</div>
+				<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR - Shortcomings</h3>
+				<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+					<p>
+						TODO.
+					</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+						frames. Use the slider here to linearly interpolate between the left frame and the right
+						frame.
+					</p> -->
+				</div>
+			</div>
+			<!-- Image. -->
+			<!-- Make sure image fits in the container. -->
+				<div class="column content">
+				<!-- <img src="static/types-of-compositions/1.svg" id="updateableFigure"> -->
+				<img src="https://placehold.co/600x400" id="updateableFigure">
+			</div>
+		</div>
+	</div>
+</div>
+
+</section> -->
+
+
+	<!-- Section title? -->
+
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">Results on Feynman Equations Benchmark</h2>
+			<!-- Method. -->
+			<div class="columns is-centered" id="results-frames-scroll">
+				<div class="column is-quarter-mobile is-two-fifth-tablet is-one-quarter-desktop is-one-fifth-widescreen article">
+					<!-- Method SubSection A. -->
+					<h3 class="title is-size-6-mobile is-size-4-tablet">The Feynman Equations Dataset</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR on Feynman Equations</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							It's better than PySR. Feel free to stick your own LLM in here. TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR with different LLMs</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							It gets better. TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Has LaSR memorized equations?</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Nope. TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Do Natural language hints help LaSR?</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Yup. TODO.
+						</p>
+					</div>
+				</div>
+				<!-- Image. -->
+				<div class="column content">
+						<!-- <img src="static/results-frames/1.svg" id="updateableFigure">	 -->
+						<img src="https://placehold.co/600x400" id="updateableFigure">
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="container is-max-desktop">
+			<div class="columns is-centered">
+				<div class="column is-full-width">
+					<h2 class="title is-3">Related Links</h2>
+
+					<div class="content has-text-left">
+						<p>
+							This project would not be possible without the excellent work of the community. These are some relevant papers to better understand the 
+							premise of our work:
+						</p>
+						<ul>
+								<li><a href="https://www.nature.com/articles/s41586-023-06924-6">FunSearch: Making new discoveries in mathematical sciences using Large Language Models</a> </li>
+								<li><a href="https://arxiv.org/abs/2305.01582">Interpretable Machine Learning for Science with PySR and SymbolicRegression.jl</a> </li>
+								<li><a href="https://arxiv.org/abs/2310.19791">LILO: Learning Interpretable Libraries by Compressing and Documenting Code</a> </li>
+								<li><a href="https://arxiv.org/abs/1911.12247 ">LLM-SR: Scientific Equation Discovery via Programming with Large Language Models</a> </li>
+							</ul>
+							
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+	<section class="section" id="BibTeX">
+		<div class="container is-max-desktop content">
+			<h2 class="title">BibTeX</h2>
+			<pre><code>@inproceedings{
+grayeli2024cosmos,
+title={Symbolic Regression with a Learned Concept Library},
+author={Arya Grayeli and Atharva Sehgal and Omar Costilla Reyes and Miles Cranmer and Swarat Chaudhuri},
+booktitle={ICML 2024 AI for Science Workshop},
+year={2024},
+url={https://openreview.net/forum?id=2vZ411eb1j}
+}</code></pre>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="content has-text-centered">
+				<a class="icon-link" href="https://atharvas.net/static/lasr.pdf">
+					<i class="fas fa-file-pdf"></i>
+				</a>
+				<a class="icon-link" href="https://github.com/MilesCranmer/PySR" class="external-link" disabled>
+					<i class="fab fa-github"></i>
+				</a>
+			</div>
+			<div class="columns is-centered">
+				<div class="column is-8">
+					<div class="content">
+						<p>
+							This template is based on the <a href="https://nerfies.github.io/">Nerfiles</a> project page.
+							The source code is available <a href="https://github.com/nerfies/nerfies.github.io">here</a> and is 
+							licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+							Commons Attribution-ShareAlike 4.0 International License</a>. I also make heavy use of the
+							<a href="https://github.com/russellsamora/scrollama">Scrollama.js</a> package. Please remember
+							to cite either the  <a href="https://nerfies.github.io/">Nerfiles</a>  website or
+							<a href="https://github.com/trishullab/cosmos-web">this website</a> if you use this template!
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<!-- Scrolly Storytelling -->
+	<script src="https://unpkg.com/scrollama"></script>
+	<script src="./static/js/scrollytelling.js"></script>
+	<script>
+		// Init scrollable sections.
+		init("#types-of-compositions-scroll");
+		init("#onepass-inference-scroll");
+		init("#results-frames-scroll");
+	</script>
+</body>
+
+</html>
