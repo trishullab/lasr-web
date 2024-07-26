@@ -92,8 +92,8 @@
 										</span>
 										<span>OpenReview</span>
 									</a>
-								<!-- Video Link. -->
-								<!-- <span class="link-block">
+									<!-- Video Link. -->
+									<!-- <span class="link-block">
 									<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 										class="external-link button is-normal is-rounded is-dark">
 										<span class="icon">
@@ -102,17 +102,17 @@
 										<span>Video</span>
 									</a>
 								</span> -->
-								<!-- Code Link. -->
-								<span class="link-block">
-									<a href="https://github.com/MilesCranmer/PySR"
-										class="external-link button is-normal is-rounded is-dark">
-										<span class="icon">
-											<i class="fab fa-github"></i>
-										</span>
-										<span>Code (Coming Soon!)</span>
-									</a>
-								</span>
-								<!-- <span class="link-block">
+									<!-- Code Link. -->
+									<span class="link-block">
+										<a href="https://github.com/MilesCranmer/PySR"
+											class="external-link button is-normal is-rounded is-dark">
+											<span class="icon">
+												<i class="fab fa-github"></i>
+											</span>
+											<span>Code (Coming Soon!)</span>
+										</a>
+									</span>
+									<!-- <span class="link-block">
 									<a href="static/presentation.pdf"
 										class="external-link button is-normal is-rounded is-dark">
 										<span class="icon">
@@ -311,6 +311,130 @@
 				<!-- Make sure image fits in the container. -->
 				<div class="column content">
 					<img src="static/scientific-discovery-frames/1.svg" id="updateableFigure" loading="eager">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">Symbolic Regression - Preliminaries</h2>
+			<div class="columns is-centered">
+				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
+					<h3 class="title is-size-6-mobile is-size-4-tablet">PySR: evolutionary algorithm for Symbolic Regression</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left">
+						<p>
+							PySR is a symbolic regression library that implements search using multi-population genetic programming.
+							intuitively, for each population, PySR runs a tournament to select the programs with the highest fitness score.
+							These programs are randomly mutated / crossed with each other to
+							produce new programs. Other programs are discarded. This process is repeated for a fixed number
+							of iteration and, in implementation,  can be parallelized across multiple cores. This
+							enables exploring a large search space efficiently, and is crucial for successful symbolic regression.
+						</p>
+						<p>
+							However, one of the key limitations of PySR is that it does not allow for the incorporation of
+							prior knowledge or domain-specific concepts. This can make it difficult to discover complex
+							relationships in the data, especially when the data is noisy or high-dimensional.
+						</p>
+					</div>
+				</div>
+				<!-- Image. -->
+				<div class="column content">
+					<video src="static/pysr.webm" autoplay loop muted playsinline></video>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">LaSR</h2>
+			<!-- Method. -->
+			<div class="columns is-centered" id="lasr-learning-loop">
+				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Desiderata 1</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Desiderata 2</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Overview</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Hypothesis Evolution</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Hypothesis Evolution</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Concept Abstraction</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Concept Abstraction</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Concept Evolution</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's search space</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's search space</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							TODO.
+						</p>
+					</div>
+				</div>
+				<!-- Image. -->
+				<div class="column content">
+					<img src="static/lasr-frames/1.svg" id="updateableFigure" loading="eager">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">Results</h2>
+			<div class="columns is-centered">
+				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Results on Feynman Dataset</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left">
+						<p>
+							TODO.
+						</p>
+					</div>
+				</div>
+				<!-- Image. -->
+				<div class="column content">
+					<img src="static/results.svg" id="updateableFigure" loading="eager">
 				</div>
 			</div>
 		</div>
