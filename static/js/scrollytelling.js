@@ -45,16 +45,6 @@ function init(selector) {
         updateableFigure.src = updateableFigurePath + "/" + (response.index + 1) + ".svg";
     }
 
-    // only call if on mobile.
-    // localizeSteps();
-    if (window.innerWidth < 768) {
-        // add is-underlay to all #updateableFigure elements
-        document.querySelectorAll(selector + " #updateableFigure").forEach(figure => {
-            figure.parentElement.classList.add('is-underlay');
-        }); 
-        localizeSteps();
-    }
-
     // 1. force a resize on load to ensure proper dimensions are sent to scrollama
     handleResize();
 
@@ -90,11 +80,22 @@ function localizeSteps() {
 
         // Append the current step content to the new background div
         backgroundDiv.appendChild(step.cloneNode(true));
+        // Remove 'step' class from the cloned step
+        backgroundDiv.querySelector('.step').classList.remove('step');
 
         // Replace the current step content with the new background div
         step.innerHTML = '';
-        step.classList = [];
+        step.classList = ['step'];
         step.appendChild(backgroundDiv);
     });
 }
     
+function mobileCorrections() {
+    if (window.innerWidth < 768) {
+        // add is-underlay to all #updateableFigure elements
+        document.querySelectorAll("#updateableFigure").forEach(figure => {
+            figure.parentElement.classList.add('is-underlay');
+        }); 
+        localizeSteps();
+    }
+}
