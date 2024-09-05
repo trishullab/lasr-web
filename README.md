@@ -1,22 +1,45 @@
-# www-cosmos
+# www-lasr
 
-This is the repository that contains source code for the [website for Cosmos](https://github.com/trishullab/cosmos).
+This is the repository that contains source code for the [website for LaSR](https://github.com/trishullab/lasr.jl).
 
-I stumbled upon the Nerfiles website which formed the basis of this website. I have made some changes to the website to make it more suitable for my needs and added some simple [scrolly-telling](https://www.jwilber.me/permutationtest/) elements. The original README is below.
+This is the general workflow I follow to convert a slide deck into a scrollytelling website:
 
-# Nerfies Readme
+1. Open `static/lasr-slides.pptx` and edit the slide deck.
+2. Export the slide deck as a PDF file `static/lasr-slides.pdf`.
+3. `brew install pdf2svg` and then run `static/extract-slides.sh` which defines the logic to extract each slide into folders with relevant frames (`static/scientific-discovery-frames/`, `static/pysr-frames/`, `static/lasr-frames/`)
+4. Open `index.html` and edit the content to match the slide deck. Here is how the directory of frames integrates into a scrollytelling section:
+  ```html
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2">Heading</h2>
+    <!-- ID helps scrollama identify which section to update -->
+    <div class="columns is-centered" id="pysr">
+      <div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
+        <h3 class="title is-size-6-mobile is-size-4-tablet">Sketch of PySR's search space</h3>
+        <div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+        ...
+        </div>
+        <!-- More sections like this for each image. -->
+      </div>
+      <!-- Image. -->
+      <div class="column content">
+        <!-- Change to point to the correct folder. -->
+        <img src="static/pysr-frames/1.svg" id="updateableFigure" loading="eager">
+      </div>
+    </div>
+  </div>
+</section>
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
-
-If you find Nerfies useful for your work please cite:
-```
-@article{park2021nerfies
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}
-```
-
-# Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<!-- More sections like this for each slide. -->
+<!-- At the end -->
+<script>
+  // Use mobile layout.
+  mobileCorrections();
+  // Init scrollable sections.
+  init("#scientific-discovery");
+  // This is the ID of the section we just defined.
+  init("#pysr");
+  init("#lasr-learning-loop");
+  init("#lasr-results");
+</script>
+  ```
