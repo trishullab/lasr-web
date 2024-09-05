@@ -55,7 +55,7 @@ function init(selector) {
     scroller
         .setup({
             step: stepSelector,
-            offset: 0.80,
+            offset: 0.2,
             debug: false
         })
         .onStepEnter(handleStepEnter);
@@ -91,11 +91,11 @@ function localizeSteps() {
 }
     
 function mobileCorrections() {
-    if (window.innerWidth < 768) {
+    // if (window.innerWidth < 768) {
         // add is-underlay to all #updateableFigure elements
         document.querySelectorAll("#updateableFigure").forEach(figure => {
             figure.parentElement.classList.add('is-underlay');
-        }); 
+        });
         localizeSteps();
-    }
+    // }
 }

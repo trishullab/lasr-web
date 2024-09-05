@@ -32,6 +32,9 @@
 	<link rel="icon" href="https://fav.farm/⚡️">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
 	<script defer src="./static/js/fontawesome.all.min.js"></script>
 	<script src="./static/js/bulma-carousel.min.js"></script>
 	<script src="./static/js/bulma-slider.min.js"></script>
@@ -91,6 +94,13 @@
 											<i class="fas fa-external-link-alt"></i>
 										</span>
 										<span>OpenReview</span>
+									</a>
+									<a href="static/lasr-slides.pdf"
+										class="external-link button is-normal is-rounded is-dark">
+										<span class="icon">
+											<i class="fas fa-external-link-alt"></i>
+										</span>
+										<span>Short Slide Deck</span>
 									</a>
 									<!-- Video Link. -->
 									<!-- <span class="link-block">
@@ -318,7 +328,7 @@
 
 	<section class="section">
 		<div class="container">
-			<div class="columns is-centered">
+			<div class="columns is-vcentered">
 				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
 					<h3 class="title is-size-6-mobile is-size-4-tablet">PySR: evolutionary algorithm for Symbolic Regression</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left">
@@ -344,71 +354,198 @@
 			</div>
 		</div>
 	</section>
+
 	<section class="section">
 		<div class="container">
-			<h2 class="title is-2">LaSR</h2>
+			<h2 class="title is-2">PySR's Exploration bottleneck</h2>
+			<!-- Method. -->
+			<div class="columns is-centered" id="pysr">
+				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Sketch of PySR's search space</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							PySR's search strategy is essentially a form of "local search." That is, each population starts
+							with a randomly sampled set of programs and iteratively optimizes them by sampling programs
+							that are <strong>syntactically close</strong> to the best programs in the population. This
+							process continues until a local optimum is reached. Intuitively, this forms an "island"
+							in the infinite search space of programs.
+						</p>
+						<p>
+							As PySR runs multiple populations in parallel, we end up with a disjoint set of "islands" in
+							the search space. Now, PySR has many heuristics to deal with such "islands" -- for instance,
+							by migrating programs between populations. However, there is no obvious way to overcome this
+							fundamental exploration bottleneck.
+						</p>
+					</div>
+					<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 1 Observation</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Consecutively, <strong>our main goal is to understand if we can overcome this exploration bottleneck
+							and increase exploration in relevant parts of the search space.</strong>
+						</p>
+						<p>
+							Our hypothesis is that the islands emerge because PySR (or any symbolic algorithm) can only
+							sample programs that are <strong>syntactically close</strong> to the best program in each population.
+							But  syntactic closeness does not necessarily imply semantic closeness. Can we instead sample
+							programs that are <strong>semantically close</strong> to the best programs in each population? 
+						</p>
+					</div>
+				</div>
+				<!-- Image. -->
+				<!-- Make sure image fits in the container. -->
+				<div class="column content">
+					<img src="static/pysr-frames/1.svg" id="updateableFigure" loading="eager">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">LaSR: Symbolic Regression with a Learned Concept Library</h2>
 			<!-- Method. -->
 			<div class="columns is-centered" id="lasr-learning-loop">
 				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Desiderata 1</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">What is a Concept? Symbolic Abstraction</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							We're going to achieve this by abstracting programs into relevant concepts. A concept is a
+							natural language representation of a program. In symbolic regression, our programs are equations.
+							Hence, we desire two properties from a concept: (1) Symbolic Abstraction and (2) Symbolic guidance. 
+						</p>
+						<p>
+							<strong>Symbolic Abstraction:</strong> A concept captures an abstract property that is common to
+							a set of programs. For instance, many empirical trends such as Zipf's law (Linguistics), Moore's law (Computer Science),
+							and Arrhenius' equation (Chemistry) can be represented by the equation sketch:
+							$$y = a x^k + \epsilon$$
+
+							This trend is pervasive across many domains and is commonly referred to as a "power law."
+							This is just one example of how a concept can "summarize" an important property of a set of programs.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Desiderata 2</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">What is a Concept? Symbolic Guidance</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							<strong>Symbolic Guidance</strong>: A concept can also guide the search for new programs. This arises naturally
+							from the abstraction property: if a concept is a good abstraction of a set of equations, we should be able to 
+							use it to sample new equations that are similar to the ones in the set.
+						</p>
+						<p>
+							This is particularly useful in scientific discovery, where scientists often have a preconception of how certain
+							variables will interact with each other, but may not know the exact form of the relationship<em>
+							(The example with gravitational waves is a little misleading as the theoretical prediction prompted the
+							experimental discovery).
+							</em>
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Overview</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: Base Algorithm</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							We build upon PySR's multi-population genetic programming framework to integrate concept guidance.
+							Let's begin by understanding PySR's main loop first. Assuming \(k\) programs in a single population, PySR starts with
+							a randomly initialized set of programs \(  \left( \{Pi_1^1, \dots \Pi_1^k \} \right) \),
+							from which the best program is selected \( \left( \pi_1^\star \right) \)
+							by evaluating its fitness on a supervised dataset. This program undergoes either mutation (a part of the program is resampled),
+							crossover (a part of the program is swapped with a part of the second best program), simplification (the program is simplified), or 
+							optimization (the constants in the program are optimized). The generated program replaces the oldest program in the population, and the process
+							repeats for a fixed number of iterations. Each iteration takes less than a second, and many such populations can be run in parallel.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Hypothesis Evolution</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: LLM Operations </h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							Integrating concept guidance into PySR involves augmenting all symbolic operations that generate new programs with
+							an LLM zero shot query that mimics the symbolic operation it is replacing
+						</p>
+						<p>
+							Instead of fully replacing the symbolic operations, we propose a hybrid approach where we replace the symbolic operation with the LLM
+							zero shot query with probability \(p\) (usually 1%). This allows us to incorporate the concept guidance into the search process without
+							sacrificing the 'local search' nature of PySR.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Hypothesis Evolution</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: Concept Library</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							Each LLM zero shot query is conditioned on concepts discovered in the previous iteration. These concepts are stored in a concept library
+							and ensure that the LLM zero shot query is relevant to the current search space.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Concept Abstraction</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: Symbolic Operations</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							The symbolic operations are implemented in <a href="https://julialang.org/">Julia</a> and are optimized for speed and efficiency. 
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Concept Abstraction</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: LLM Operation</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							The LLM operation that augment the symbolic operations are simple zero shot to a large language model. While we found promising results with
+							even simple zero shot queries, there is a lot of potential to improve the LLM prompts / prompting strategy!
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Concept Evolution</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Putting it together: LaSR's Three phases</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							So far, we've only described the <em>Hypothesis Evolution</em> phase where we integrate language guidance into PySR using a concept library.
+							The rest of the phases of LaSR deal with <em>Concept Abstraction</em>: updating the concept library with new concepts derived from the best
+							performing programs and <em>Concept Evolution</em>: updating the concept library with new concepts that are implications of the discovered concepts.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's search space</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 1 Hypothesis Evolution</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							As discussed previously, the hypothesis evolution searches for programs that best fit the data and are guided by concepts discovered in the previous iteration.
+							
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's search space</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 2 Concept Abstraction</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							Next, the best performing programs are abstracted into concepts. We rely on another LLM zero shot query
+							to "summarize" the programs into a natural language representation. This concept is then stored in the concept library.
 						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 3 Concept Evolution</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Finally, the concept library is updated with new concepts that are implications of the discovered concepts. This is done by
+							another LLM zero shot query that is conditioned on the discovered concepts. 
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (1)</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Let's take a step back and understand the intuition behind LaSR. We noted that 
+							PySR's ends up with "islands" in the search space because it can only sample programs
+							that are syntactically close to the best programs in each population. As LaSR builds upon PySR,
+							we will also end up with these "islands" in the search space at the end of Phase 1.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (2)</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							In Phase 2, LaSR abstracts the best performing programs into concepts. These concepts serve 
+							as "bridges" between the "islands" in the search space.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (3)</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							We can now sample new programs conditioned on the discovered concepts. This allows us to explore
+							new parts of the search space that were previously inaccessible. Since we retain the "local search"
+							capabilities of PySR, intuitively, this allows us to explore more "islands" in the search space.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (4)</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Furthermore, in Phase 3, we can sample more concepts that are derived from the discovered concepts.
+							these concepts, in turn, increase the exploration of the search space in areas that were previously
+							inaccessible.
 					</div>
 				</div>
 				<!-- Image. -->
@@ -421,19 +558,82 @@
 
 	<section class="section">
 		<div class="container">
-			<h2 class="title is-2">Results</h2>
-			<div class="columns is-centered">
+			<h2 class="title is-2">LaSR: Results</h2>
+			<!-- Method. -->
+			<div class="columns is-centered" id="lasr-results">
 				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Results on Feynman Dataset</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left">
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Feynman Equations</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							TODO.
+							LaSR doesn't require human provided concepts to operate. Hence, we can test LaSR against other
+							symbolic regression algorithms on the Feynman equations; a collection of equations from the 
+							<a href="https://www.feynmanlectures.caltech.edu/">Feynman Lectures Series</a> that are considered
+							empirical laws in physics. We found that LaSR outperforms other symbolic regression algorithms on
+							this benchmark.
+						</p>
+						<p>
+							LaSR's performance is ultimately bottlenecked by the quality of the language guidance. To evaluate this,
+							we conducted a set of cascading experiments where we varied the quality of the language guidance by (1) increasing 
+							the probability of replacing symbolic operations with LLM zero shot queries and (2) changing the backend LLM model.
+							We found that even a small model like <a href="https://github.com/meta-llama/llama3">Llama 3 8B</a> can provide
+							sufficient guidance for LaSR to outperform other symbolic regression algorithms.
+						</p>
+						<p>
+							More details on this set of experiments (and a set of experiments on an unseen synthetic dataset) can be found in our paper.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR with Hints</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							One of the use case of LaSR is whether the search is faster if we provide useful hints during initialization.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR with Hints: Results</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							To test this on the Feynman equations dataset, we conducted an ablation study where we provided LaSR with
+							the chapter title of the equation we wanted to discover. We found that LaSR with hints accelerated the search
+							process and found the correct equation faster than LaSR without hints, even discovering some new equations.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's equations: Qualitative study</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							We also conducted a qualitative study on the equations discovered by LaSR. Here, we should Equation #10 from the Feynman
+							equations dataset: Coulomb's law. LaSR and PySR both discover a high performing program for this equation. Coulomb's law
+							is interesting because it embodies multiple concepts: (1) The force and the distance of the charges are inversely proportional and follow a
+							"power law" trend, (2) In the scalar form, the force is proportional to the product of the charges and since multiplication is commutative,
+							the order of the charges does not matter.
+						</p>
+						<p>
+							<strong>PySR's equation:</strong> PySR's equation is unwieldy and simplifies to the correct form after about 10 manual steps of simplification. Also,
+							as this equation requires more constants, it is more prone to optimization errors.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's equations: Qualitative study</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							<strong>LaSR's equation:</strong> LaSR's equation is much simpler and reduces to ground truth after four manual steps of simplification. Surprisingly,
+							we notice that smaller models tend to produce simpler equations. 
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's equations: Qualitative study</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							LaSR produces two artifacts: an equation of best fit and a concept library. Here, we showcase snippets of the concept library generated for
+							Coulomb's law. As a consequence of LLM training, the concepts are rather verbose and small relevant concepts are often buried in the middle of the
+							generations. 
+						</p>
+						<p>
+							<strong>Limitations:</strong>As a consequence of using LLM zero shot queries, LaSR cannot guarantee the factuality or the correctness of the concepts in the concept library. 
+							Furthermore, concepts deemed to be "important" may be a consequence of the LLM model's training data and may mislead scientists.
+							The symbolic operations are implemented in <a href="https://julialang.org/">Julia</a> and are optimized for speed and efficiency.
 						</p>
 					</div>
 				</div>
 				<!-- Image. -->
 				<div class="column content">
-					<img src="static/results.svg" loading="eager">
+					<img src="static/results-frames/1.svg" id="updateableFigure" loading="eager">
 				</div>
 			</div>
 		</div>
@@ -475,8 +675,12 @@
 	<section class="section" id="BibTeX">
 		<div class="container is-max-desktop content">
 			<h2 class="title">BibTeX</h2>
+			<p>
+				If you found this post interesting, please read the full paper for more mathematical details and
+				experimental results. You can cite the paper as follows:
+			</p>
 			<pre><code>@inproceedings{
-grayeli2024cosmos,
+grayeli2024lasr,
 title={Symbolic Regression with a Learned Concept Library},
 author={Arya Grayeli and Atharva Sehgal and Omar Costilla Reyes and Miles Cranmer and Swarat Chaudhuri},
 booktitle={ICML 2024 AI for Science Workshop},
@@ -529,7 +733,9 @@ url={https://openreview.net/forum?id=2vZ411eb1j}
 		// Init scrollable sections.
 		mobileCorrections();
 		init("#scientific-discovery");
+		init("#pysr");
 		init("#lasr-learning-loop");
+		init("#lasr-results");
 	</script>
 </body>
 
