@@ -443,6 +443,25 @@
 							</em>
 						</p>
 					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's Three phases</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							LaSR consists of three phases: <em>Hypothesis Evolution</em>, <em>Concept Abstraction</em>, and <em>Concept Evolution</em>. In 
+							<em>Hypothesis Evolution</em>, we search for programs that best fit the data and are guided by concepts discovered in the previous iteration.
+							<em>Concept Abstraction</em> deals with updating the concept library with new concepts derived from the best
+							performing programs. Finally, <em>Concept Evolution</em> involves updating the concept library with new concepts that are implications of the discovered concepts.
+						</p>
+						<p>
+							This is a self-amplifying loop: better programs lead to better concepts, which can, in turn, guide the search for even better programs.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 1 Hypothesis Evolution</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							The hypothesis evolution searches for programs that best fit the data and are guided by concepts discovered in the previous iteration. To do this, we will <em>extend</em> PySR's search process to incorporate concept guidance.
+							The next few slides will detail how we do this.
+						</p>
+					</div>
 					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: Base Algorithm</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
@@ -473,34 +492,6 @@
 						<p>
 							Each LLM zero shot query is conditioned on concepts discovered in the previous iteration. These concepts are stored in a concept library
 							and ensure that the LLM zero shot query is relevant to the current search space.
-						</p>
-					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: Symbolic Operations</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							The symbolic operations are implemented in <a href="https://julialang.org/">Julia</a> and are optimized for speed and efficiency. 
-						</p>
-					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Integrating concept guidance into a SR framework: LLM Operation</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							The LLM operation that augment the symbolic operations are simple zero shot to a large language model. While we found promising results with
-							even simple zero shot queries, there is a lot of potential to improve the LLM prompts / prompting strategy!
-						</p>
-					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Putting it together: LaSR's Three phases</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							So far, we've only described the <em>Hypothesis Evolution</em> phase where we integrate language guidance into PySR using a concept library.
-							The rest of the phases of LaSR deal with <em>Concept Abstraction</em>: updating the concept library with new concepts derived from the best
-							performing programs and <em>Concept Evolution</em>: updating the concept library with new concepts that are implications of the discovered concepts.
-						</p>
-					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 1 Hypothesis Evolution</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							As discussed previously, the hypothesis evolution searches for programs that best fit the data and are guided by concepts discovered in the previous iteration.
-							
 						</p>
 					</div>
 					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 2 Concept Abstraction</h3>
@@ -581,12 +572,6 @@
 						</p>
 						<p>
 							More details on this set of experiments (and a set of experiments on an unseen synthetic dataset) can be found in our paper.
-						</p>
-					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR with Hints</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							One of the use case of LaSR is whether the search is faster if we provide useful hints during initialization.
 						</p>
 					</div>
 					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR with Hints: Results</h3>

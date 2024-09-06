@@ -30,7 +30,7 @@ This is the general workflow I follow to convert a slide deck into a scrollytell
   </div>
 </section>
 
-<!-- More sections like this for each slide. -->
+<!-- More sections like this for each folder of frames. -->
 <!-- At the end -->
 <script>
   // Use mobile layout.
