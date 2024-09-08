@@ -1,0 +1,125 @@
+
+
+	<section class="section">
+		<div class="container">
+			<h2 class="title is-2">Scientific Discovery with Symbolic Regression</h2>
+			<!-- Method. -->
+			<div class="columns is-centered" id="scientific-discovery">
+				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Discovery - Goal</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							One of the grand challenges in the artificial intelligence is to find an AI scientist:
+							an
+							artificial agent that can automatically design, test, and infer scientific hypotheses
+							from
+							data. The scientific discovery process can be broken down into six distinct steps. Let's
+							begin by understanding these steps with a concrete example: Kepler's discovery of the
+							laws
+							of planetary motion. A more complete
+							description of this example is found in "The Astronomical Revolution: Copernicus-
+							Kepler-Borelli" by Alexandre Koyré.
+						</p>
+					</div>
+					<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 1 Observation</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							The first step in the scientific discovery process is to observe a phenomenon that is
+							unexplained by the leading scientific theories. In our example, the leading theory --
+							Aristotle's geocentric model -- failed to explain the retrograde motion of Mars as it moved
+							across the night sky.
+						</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 2 Theory</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Once an anomaly is observed, the next step is to propose a new theory that can explain the
+							phenomenon. In our example, Copernicus hypothesized a heliocentric model of the solar
+							system, where the planets revolve around the sun. The relative motion of the planets in this
+							model can explain the retrograde motion of Mars.
+							TODO.
+						</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 3 Data Collection</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							A theory is incomplete without empirical evidence to support it. In our example, Tycho Brahe
+							meticulously collected data on the positions of the planets in the night sky. Notice that
+							Brahe collected more readings when he believed, intuitively, that the retrograde motion of
+							Mars was most pronounced. This is an important distinction in data collection for scientific
+							discovery: there is always an 'importance bias' in the data collection process.
+						</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 4 Analysis</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Johannes Kepler then cleaned and analyzed the data collected by Brahe. Kepler tried various
+							geometric shapes to fit the data, and found that an ellipse fit the data best. This
+							empirical discovery enabled deducing relationships between the orbital duration
+							and the orbital radius.
+						</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Scientific Process - Step 5 Interpretation</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Kepler's work in moving the empirical data into a set of mathematical relationships paved
+							the way for broader interpretation. For instance, Newton validates his laws of motion and
+							his law of universal gravitation by showing that the empirical relationships discoverd by
+							Kepler are a consequence of his laws. In this way, the interpretation of empirical law in
+							one
+							phenomena often generalizes to and explains other phenomena that didn't have a-priori data
+							collection mechanisms.
+						</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Symbolic Regression</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							This paper focuses on just one subtask in the scientific discovery process: <strong>symbolic
+								regression</strong>. Symbolic regression is the task of finding a mathematical
+							expression that best fits a given dataset. The goal is to find a compact, interpretable
+							expression that can be used to make predictions and infer new relationships. Symbolic
+							regression is a key tool in scientific discovery, as it can help uncover hidden
+							relationships in the data and suggest new hypotheses to test.
+							<br />
+							Kepler's discovery of the empirical laws of planetary motion is considered one of the
+							earliest examples of symbolic regression.
+						</p>
+						<!-- We can also animate the scene by interpolating the deformation latent codes of two input
+							frames. Use the slider here to linearly interpolate between the left frame and the right
+							frame.
+						</p> -->
+					</div>
+				</div>
+				<!-- Image. -->
+				<!-- Make sure image fits in the container. -->
+				<div class="column content">
+					<img src="static/scientific-discovery-frames/1.svg" id="updateableFigure" loading="eager">
+				</div>
+			</div>
+		</div>
+	</section>
+	

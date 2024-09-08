@@ -52,10 +52,16 @@ function init(selector) {
     // 		this will also initialize trigger observations
     // 3. bind scrollama event handlers (this can be chained like below)
     const stepSelector = selector + " div.step";
+    if (window.innerWidth < 768) {
+        offset = 0.2;
+    } else {
+        offset = 0.9;
+    }
+
     scroller
         .setup({
             step: stepSelector,
-            offset: 0.2,
+            offset: offset,
             debug: false
         })
         .onStepEnter(handleStepEnter);
@@ -91,11 +97,11 @@ function localizeSteps() {
 }
     
 function mobileCorrections() {
-    // if (window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
         // add is-underlay to all #updateableFigure elements
         document.querySelectorAll("#updateableFigure").forEach(figure => {
             figure.parentElement.classList.add('is-underlay');
         });
         localizeSteps();
-    // }
+    }
 }
