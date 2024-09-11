@@ -196,7 +196,7 @@
 				<div class="content has-text-justified">
 					<p>
 						The next sections might not render correctly on mobile devices. Please view this page on a
-						desktop or enable "desktop mode" for the best experience!
+						desktop or enable "desktop mode!"
 					</p>
 				</div>
 			</div>
@@ -227,8 +227,7 @@
 							his law of universal gravitation by showing that the empirical relationships discoverd by
 							Kepler are a consequence of his laws. In this way, the interpretation of empirical law in
 							one phenomena often generalizes to and explains other phenomena that didn't have a-priori
-							data
-							collection mechanisms.
+							data collection mechanisms.
 						</p>
 					</div>
 				</div>
@@ -254,16 +253,21 @@
 							Intuitively, for each population, PySR runs a tournament to select the programs with the
 							highest fitness score.
 							These programs are randomly mutated / crossed with each other to
-							produce new programs. Other programs are discarded. This process is repeated for a fixed
+							produce new programs. These new programs replace the oldest candidate. This process is
+							repeated for a fixed
 							number
 							of iteration and, in implementation, can be parallelized across multiple cores. This
 							enables scalable exploration of a large search space, and is crucial for PySR's success.
 						</p>
 						<p>
-							However, one of the key limitations of PySR is that it does not allow for the incorporation
-							of
-							prior knowledge or domain-specific concepts. This can make it difficult to discover complex
-							relationships in the data, especially when the data is noisy or high-dimensional.
+							However, PySR does not allow for the incorporation of prior knowledge or domain-specific
+							concepts. This can make it difficult to discover complex relationships, especially in
+							scientific
+							domains where the data is noisy and/or high-dimensional but supplemented with rich
+							background knowledge.
+						</p>
+						<p>
+							This fundamental limitation surfaces as an <em>exploration bottleneck</em>.
 						</p>
 					</div>
 				</div>
@@ -289,7 +293,7 @@
 							with a randomly sampled set of programs and iteratively optimizes them by sampling programs
 							that are <strong>syntactically close</strong> to the best programs in the population. This
 							process continues until a local optimum is reached. Intuitively, this forms an "island"
-							in the infinite search space of programs.
+							in the search space of programs.
 						</p>
 						<p>
 							As PySR runs multiple populations in parallel, we end up with a disjoint set of "islands" in
@@ -302,8 +306,7 @@
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
 							Consecutively, <strong>our main goal is to understand if we can overcome this exploration
-								bottleneck
-								and increase exploration in relevant parts of the search space.</strong>
+								bottleneck and increase exploration in relevant parts of the search space.</strong>
 						</p>
 						<p>
 							Our hypothesis is that the islands emerge because PySR (or any symbolic algorithm) can only
