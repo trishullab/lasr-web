@@ -139,8 +139,19 @@
 			<div class="hero-body">
 				<img src="./static/images/teaser.svg" style="max-width: 100%; height: auto;" loading="eager" <h2
 					class="subtitle has-text-centered">
-				<span class="lasr">LaSR</span> leverages <em>concept guidance</em> to accelerate symbolic regression for
-				scientific discovery.
+				<span class="lasr">LaSR</span> leverages <em>concept guidance</em>
+				 to accelerate symbolic regression for scientific discovery.
+				 It iteratively refines a library of interpretable textual
+				 concepts which are used to bias the search for hypotheses
+				 for scientific discovery tasks. This involves three distinct
+				 phases: (<strong>Top</strong>) finding optimal hypotheses within
+				 a concept-directed hypothesis evolution, (<strong>Right</strong>)
+				 leveraging the optimal hypotheses to find new concept abstractions,
+				 and (<strong>Left</strong>) iterating on learned concepts to discover
+				 new concepts to accelerate hypothesis evolution. LaSR introduces an
+				 orthogonal direction of improvement over
+				 <a href="https://arxiv.org/abs/2305.01582">current symbolic regression algorithms</a>
+				 (in gray).
 				</h2>
 
 			</div>
@@ -214,7 +225,7 @@
 						<p>
 							One of the earliest known example of symbolic regression is Johannes Kepler's discovery of
 							the empirical laws of planetary motion. Kepler fit various geometric shapes to the ground
-							truth celestial data and found that elliptical orbits best explained the data. Kepler's work
+							truth celestial data (Rudolphine Tables) and found that elliptical orbits best explained the data. Kepler's work
 							in transforming the empirical data into a set of mathematical relationships paved
 							the way for broader interpretation. For instance, Newton validates his laws of motion and
 							his law of universal gravitation by showing that the empirical relationships discoverd by
@@ -246,7 +257,7 @@
 							Intuitively, for each population, PySR runs a tournament to select the programs with the
 							highest fitness score.
 							These programs are randomly mutated / crossed with each other to
-							produce new programs. These new programs replace the oldest candidate. This process is
+							produce new programs. The best performing new programs replaces the oldest candidate. This process is
 							repeated for a fixed
 							number
 							of iteration and, in implementation, can be parallelized across multiple cores. This
@@ -586,6 +597,43 @@
 							induction.
 						</p>
 					</div>
+
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LLM Scaling Laws: Present methodology</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							To investigate LaSR's utility in finding novel and practical empirical trends,
+							we investigate whether LaSR can discover novel LLM scaling laws on the BigBench dataset.
+						</p>
+						<p>
+							Traditionally, to identify an LLM scaling law, practitioners must first manually posit a "skeleton
+							equation" with a fixed set of known variables and unknown free parameters, and then optimize
+							the unknown parameters based on a dataset of model hyperparameters and resulting dataset fitness.
+						</p>
+					</div>
+
+
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LLM Scaling Laws: Methodology with LaSR</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							Instead of starting with a predefined equation, we use LaSR to discover the skeleton
+							equation that best fits various subsets of the BigBench dataset.
+						</p>
+						<p>
+							Removing the need to manually posit a skeleton equation simplifies the methodology for finding scaling laws in many ways. (1) It removes human preconceptions about the expected relationships between hyperparameters. (2) It increases the number of variables and the type of variables human practitioners can jointly reason about. (3) It enables positing equations of much higher complexity and variable interdependence than otherwise possible.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's LLM Scaling Law</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							LaSR discovers the following scaling law on the subset of BigBench:
+							$$\texttt{score} = \frac{A}{\left( \frac{\texttt{train_steps}}{B}\right)^\texttt{#shots}} + E$$
+							More details are in the paper but, in essence, this scaling law suggests that increasing the number of shots exponentially increases the model's performance for instances with less training data, while having diminishing gains as the number of training steps of the model increase.
+						</p>
+						<p>
+							As the output artifacts of LaSR are interpretable, we can even augment existing scaling laws with the discovered empirical! More details/limitations are in the paper!
+						</p>
+					</div>
+
 				</div>
 				<!-- Image. -->
 				<div class="column content">

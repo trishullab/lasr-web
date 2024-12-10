@@ -25,6 +25,6 @@ done
 
 # pdf2svg
 # extract slides 30->36 in a folder called results-frames/{0->6}.svg
-for i in {27..31}; do
+for i in {27..33}; do
     pdf2svg ${PDF} results-frames/$((i-26)).svg $i
 done
